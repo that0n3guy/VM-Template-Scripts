@@ -13,7 +13,7 @@
 ### END INIT INFO
 
 # version 2.0
-username="amahi";
+username="root";
 ipaddress=192.168.1.11
 
 
@@ -45,7 +45,12 @@ start () {
        fi
        cd /mnt/samba/
        lock_mount_shares_locally
-       grep "^\[" /home/${username}/.smb_remote_shares | grep -v "\[global\]" | grep -v "\[homes\]" | awk -F'[' '{print $2}' | awk -F']' '{print $1}' | xargs -d "\n" mkdir -p
+       if [ "$username" = "root"]; then
+               userpath="/root"
+       else
+               userpath="/home/${username}"
+       fi
+       grep "^\[" ${userpath}/.smb_remote_shares | grep -v "\[global\]" | grep -v "\[homes\]" | awk -F'[' '{print $2}' | awk -F']' '{print $1}' | xargs -d "\n" mkdir -p
        sleep 5
        ls -1 | while read d; do
                if [ "$d" = "printers" ] || [ "$d" = "print$" ]; then

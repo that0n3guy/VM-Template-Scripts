@@ -27,4 +27,6 @@ A simple bash script that allows you to easily define the samba login details fo
 ###change_username.sh
 A bash script that allows you to a linux username and deletes the root password (so you can't login via ssh)
 
+You must be logged out of the user you want to rename, its easiest to run this as root (to login to root you need to first set a root password: sudo passwd)
+
 

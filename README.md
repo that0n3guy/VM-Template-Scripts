@@ -1,7 +1,7 @@
-VM Template, change user:
+VM Template Scripts
+=======================
 
-
-h3. mount_share_locally
+###mount_share_locally
 An init.d script.  Mounts samba shares locally to /mnt/samba/{sharename}.  It reads the .smb_credentials and .smb_remote_mounts files in the defined users home directory.
 
 To use, edit the IP and username in the script, the run the following:
@@ -21,10 +21,10 @@ Then run:
     sudo service mount_shares_locally stop
 
 
-h3. smb_login_mount.sh
+###smb_login_mount.sh
 A simple bash script that allows you to easily define the samba login details for mount_share_locally as well as which shares you want to mount.
 
-h3. change_username.sh
+###change_username.sh
 A bash script that allows you to a linux username and deletes the root password (so you can't login via ssh)
 
 

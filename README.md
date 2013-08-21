@@ -7,6 +7,7 @@ An init.d script.  Mounts samba shares locally to /mnt/samba/{sharename}.  It re
 To use, edit the IP and username in the script, the run the following:
 
     sudo cp mount_shares_locally /etc/init.d/
+    sudo chmod +x /etc/init.d/mount_shares_locally
     sudo update-rc.d mount_shares_locally defaults
 
 

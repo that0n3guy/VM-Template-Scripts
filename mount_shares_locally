@@ -58,7 +58,7 @@ start () {
                else
                        if [ "`mount | grep "//$ipaddress/$d/* on " | wc -l`" = "0" ]; then
                                echo "  Mounting share [$d]"
-                               /sbin/mount.cifs "//$ipaddress/$d" "$d" -o credentials=/home/${username}/.smb_credentials,uid=${uid},gid=${gid},file_mode=0660,dir_mode=0777,nobrl,hard,_netdev,noserverino,mfsymlinks
+                               /sbin/mount.cifs "//$ipaddress/$d" "$d" -o credentials=${userpath}/.smb_credentials,uid=${uid},gid=${gid},file_mode=0777,dir_mode=0777,nobrl,hard,_netdev,noserverino,mfsymlinks
                        else
                                echo "  Share [$d] is already mounted."
                        fi

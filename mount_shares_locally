@@ -45,7 +45,7 @@ start () {
        fi
        cd /mnt/samba/
        lock_mount_shares_locally
-       if [ "$username" = "root"]; then
+       if [ "$username" = "root" ]; then
                userpath="/root"
        else
                userpath="/home/${username}"

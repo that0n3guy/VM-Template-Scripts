@@ -1,4 +1,7 @@
 #!/bin/bash
+# this is from: http://zackreed.me/articles/41-shell-script-to-watch-disk-space
+
+
 
 if [[ $EUID -ne 0 ]]; then
         echo "You must be root (or sudo) to do this..." 1>&2

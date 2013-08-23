@@ -62,5 +62,9 @@ echo "# NO - Use the system generated From: address">> /etc/ssmtp/ssmtp.conf
 echo "FromLineOverride=YES">> /etc/ssmtp/ssmtp.conf
 
 
+echo
+echo "Done!"
+echo "check /etc/ssmtp/ssmtp.conf to make sure its setup correctly."
+
 
 

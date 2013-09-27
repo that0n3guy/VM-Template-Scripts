@@ -2,6 +2,10 @@
 
 
 #---------------------------do not edit below here-----------
+echo "listing all system users:"
+cat /etc/passwd
+
+
 #Assign existing hostname to $hostn
 hostn=$(cat /etc/hostname)
 

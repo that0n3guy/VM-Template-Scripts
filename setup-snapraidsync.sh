@@ -4,10 +4,6 @@ if [[ $EUID -ne 0 ]]; then
         exit 100
 fi
 
-echo "Your snapraid parity files should be named snapraid.parity... "
-echo "  if not, exit this scrip (CTRL-C) in the next 5 seconds and edit them in /etc/snapraid.conf"
-sleep 5
-
 echo "Creating /root/scripts folder "
 mkdir /root/scripts -p
 echo
@@ -30,13 +26,15 @@ echo
 echo "What is the path to the a content file (eg: /var/snapraid/content)?"
 read -e contentfile
 echo
+
 #read -e parityfile
 
-sed -i sed -i "s/EMAIL_SUBJECT_PREFIX=.*\+/EMAIL_SUBJECT_PREFIX='$subject'" /root/scripts/SnapraidSync.sh
-sed -i sed -i "s/EMAIL_ADDRESS=.*\+/EMAIL_ADDRESS='$email'" /root/scripts/SnapraidSync.sh
-sed -i sed -i "s/DEL_THRESHOLD=.*\+/DEL_THRESHOLD=$delthresh" /root/scripts/SnapraidSync.sh
-sed -i sed -i "s/CONTENT_FILE=.*\+/CONTENT_FILE='$contentfile'" /root/scripts/SnapraidSync.sh
- sed -i sed -i "s/PARITY_FILE=.*\+/PARITY_FILE=$parityfile" /root/scripts/SnapraidSync.sh
+sed -i "s/EMAIL_SUBJECT_PREFIX=.*\+/EMAIL_SUBJECT_PREFIX='$subject'/" /root/scripts/SnapraidSync.sh
+sed -i "s/EMAIL_ADDRESS=.*\+/EMAIL_ADDRESS='$email'/" /root/scripts/SnapraidSync.sh
+sed -i "s/DEL_THRESHOLD=.*\+/DEL_THRESHOLD=$delthresh/" /root/scripts/SnapraidSync.sh
+sed -i "s/CONTENT_FILE=.*\+/CONTENT_FILE='${contentfile//\//\/}'/" /root/scripts/SnapraidSync.sh
+# alternate: sed -i "s|CONTENT_FILE=.*\+|CONTENT_FILE='$contentfile'|" /root/scripts/SnapraidSync.sh
+#sed -i "s/PARITY_FILE=.*\+/PARITY_FILE=$parityfile" /root/scripts/SnapraidSync.sh
 
 echo
 echo
@@ -44,3 +42,5 @@ echo "Done, please check the variables at the top of /root/scripts/SnapraidSync.
 echo
 echo 'Also, you will probably want to setup something like the text below "in crontab -e":'
 echo '15 0 * * * /root/scripts/SnapraidSync.sh'
+echo
+echo "Lastly, Your snapraid parity files should be named snapraid.parity in /etc/snapraid.conf or this won't work."

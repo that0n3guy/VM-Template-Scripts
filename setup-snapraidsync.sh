@@ -4,11 +4,15 @@ if [[ $EUID -ne 0 ]]; then
         exit 100
 fi
 
+echo "Your snapraid parity files should be named snapraid.parity... "
+echo "  if not, exit this scrip (CTRL-C) in the next 5 seconds and edit them in /etc/snapraid.conf"
+sleep 5
+
 echo "Creating /root/scripts folder "
 mkdir /root/scripts -p
 echo
-echo "Installing curl"
-apt-get install cifs-utils curl
+echo "Installing curl and mutt"
+apt-get install cifs-utils curl mutt
 echo
 echo "Downloading snapraid sync script to /root/scripts/SnapraidSync.sh"
 curl -o /root/scripts/SnapraidSync.sh https://raw.github.com/that0n3guy/VM-Template-Scripts/master/SnapraidSync.sh
@@ -26,14 +30,13 @@ echo
 echo "What is the path to the a content file (eg: /var/snapraid/content)?"
 read -e contentfile
 echo
-echo "What is the path to the the parrity file (eg: /mnt/disk1/parity)?"
-read -e parityfile
+#read -e parityfile
 
 sed -i sed -i "s/EMAIL_SUBJECT_PREFIX=.*\+/EMAIL_SUBJECT_PREFIX='$subject'" /root/scripts/SnapraidSync.sh
 sed -i sed -i "s/EMAIL_ADDRESS=.*\+/EMAIL_ADDRESS='$email'" /root/scripts/SnapraidSync.sh
 sed -i sed -i "s/DEL_THRESHOLD=.*\+/DEL_THRESHOLD=$delthresh" /root/scripts/SnapraidSync.sh
 sed -i sed -i "s/CONTENT_FILE=.*\+/CONTENT_FILE='$contentfile'" /root/scripts/SnapraidSync.sh
-sed -i sed -i "s/PARITY_FILE=.*\+/PARITY_FILE=$parityfile" /root/scripts/SnapraidSync.sh
+ sed -i sed -i "s/PARITY_FILE=.*\+/PARITY_FILE=$parityfile" /root/scripts/SnapraidSync.sh
 
 echo
 echo

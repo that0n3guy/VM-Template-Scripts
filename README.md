@@ -1,6 +1,8 @@
 VM Template Scripts
 =======================
 
+Update - These scripts haven't been used in a while.   I've moved away from virtual (mostly) as docker is a much better option for me.  They should still work (since bash lives on forever).
+
 ###mount_share_locally
 An init.d script.  Mounts samba shares locally to /mnt/samba/{sharename}.  It reads the .smb_credentials and .smb_remote_mounts files in the defined users home directory.
 
